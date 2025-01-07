@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import sqlite3 from 'sqlite3';
 
 // Creates an Express application.
@@ -6,6 +7,12 @@ sqlite3.verbose();
 const app = express();
 const port = 8080;
 app.use(express.json());
+
+// Enable CORS for all port 5173
+app.use(cors({
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST'],
+}));
 
 // Open the database
 const db = new sqlite3.Database(`${__dirname}/database.db`, (error) => {
