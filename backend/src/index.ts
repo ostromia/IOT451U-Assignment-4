@@ -14,7 +14,7 @@ const db = new sqlite3.Database(`${__dirname}/database.db`, (error) => {
     }
 });
 
-app.get('/item', (request, response) => {
+app.get('/inventory', (request, response) => {
     const query = "SELECT * FROM inventory";
     db.all(query, [], (error, rows) => {
         if (error) {
