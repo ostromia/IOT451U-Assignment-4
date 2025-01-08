@@ -8,9 +8,16 @@ const app = express();
 const port = 8080;
 app.use(express.json());
 
-// Enable CORS for all port 5173
+// Enable CORS for localhost
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: (origin, callback) => {
+        if (!origin || origin.startsWith('http://localhost')) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     methods: ['GET', 'POST'],
 }));
 
