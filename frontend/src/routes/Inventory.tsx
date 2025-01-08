@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from  'react-router-dom';
 import "../styles/Inventory.css";
 
 interface InventoryItem {
@@ -25,9 +26,11 @@ function Inventory() {
     return (
         <div id="inventory">
             {inventory.map((item) => (
-                <div className="inventory-item" key={item.id}>
-                    <img src={item.image}/>
-                </div>
+                <Link to={`/inventory/${item.id}`}>
+                    <div className="inventory-item" key={item.id}>
+                        <img src={item.image}/>
+                    </div>
+                </Link>
             ))}
         </div>
     );
