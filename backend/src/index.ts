@@ -88,6 +88,31 @@ app.post('/remove-item', (request, response) => {
     });
 });
 
+app.post('/favourite', (request, response) => {
+    const { id } = request.body;
+
+    if (!id) {
+        response.status(400).json({ error: "ID is required" });
+        return;
+    }
+
+    const query = `UPDATE inventory SET favourite = CASE WHEN favourite = 1 THEN 0 ELSE 1 END WHERE id = ?`;
+
+    db.run(query, [id], function (error) {
+        if (error) {
+            console.error(error.message);
+            return response.status(500).json({ error: error.message });
+        }
+
+        if (this.changes === 0) {
+            return response.status(404).json({ error: "Item not found" });
+        }
+
+        response.status(200).json({ message: "Favourite status toggled successfully" });
+    });
+});
+
+
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });

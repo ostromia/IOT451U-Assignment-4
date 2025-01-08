@@ -10,7 +10,8 @@ interface InventoryItem {
     image: string;
     brand: string;
     price: number;
-    category: string
+    category: string;
+    favourite: boolean;
 }
 
 function ItemDetail() {
@@ -33,11 +34,23 @@ function ItemDetail() {
         axios.post('http://localhost:8080/remove-item', { id: Number(id) })
             .then(() => {
                 alert("Item removed successfully");
-                navigate('/inventory'); // Redirect to /inventory
+                navigate('/inventory');
             })
             .catch(error => {
                 console.error("Error removing item:", error);
                 alert("Failed to remove item");
+            });
+    };
+
+    const handleToggleFavourite = () => {
+        axios.post('http://localhost:8080/favourite', { id: Number(id) })
+            .then(() => {
+                alert(`Item ${item?.favourite ? "removed from" : "marked as"} favourites`);
+                setItem(prev => prev ? { ...prev, favourite: !prev.favourite } : null);
+            })
+            .catch(error => {
+                console.error("Error toggling favourite status:", error);
+                alert("Failed to toggle favourite status");
             });
     };
 
@@ -53,7 +66,11 @@ function ItemDetail() {
                 <p>{item.category}</p>
                 <p>Price: £{item.price}</p>
                 <p><a href={item.url}>View Item</a></p>
+                <p>{item.favourite ? "Marked as Favourite" : "Not a Favourite"}</p>
                 <button onClick={handleDelete}>Delete Item</button>
+                <button onClick={handleToggleFavourite}>
+                    {item.favourite ? "Remove from Favourites" : "Add to Favourites"}
+                </button>
             </div>
             <div id="inventory-item-image-container">
                 <img src={item.image} alt={item.name} />

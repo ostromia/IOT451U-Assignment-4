@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from  'react-router-dom';
+import { Link } from 'react-router-dom';
 import "../styles/Inventory.css";
 
 interface InventoryItem {
@@ -10,11 +10,13 @@ interface InventoryItem {
     image: string;
     brand: string;
     price: number;
-    category: string
+    category: string;
+    favourite: boolean;
 }
 
 function Inventory() {
     const [inventory, setInventory] = useState<InventoryItem[]>([]);
+    const [showFavorites, setShowFavorites] = useState(false);
 
     useEffect(() => {
         axios.get(`http://localhost:8080/inventory`)
@@ -26,16 +28,30 @@ function Inventory() {
             });
     }, []);
 
+    const handleToggleFavorites = () => {
+        setShowFavorites((prev) => !prev);
+    };
+
+    const filteredInventory = showFavorites
+        ? inventory.filter(item => item.favourite)
+        : inventory;
+
     return (
-        <div id="inventory">
-            {inventory.map((item) => (
-                <Link to={`/inventory/${item.id}`}>
-                    <div className="inventory-item" key={item.id}>
-                        <img src={item.image}/>
-                    </div>
-                </Link>
-            ))}
-        </div>
+        <>
+            <button onClick={handleToggleFavorites}>
+                {showFavorites ? "Show All Items" : "Show Favorites"}
+            </button>
+            <div id="inventory">
+                    {filteredInventory.map((item) => (
+                        <Link to={`/inventory/${item.id}`} key={item.id}>
+                            <div className="inventory-item">
+                                <img src={item.image} alt={item.name} />
+                                <p>{item.name}</p>
+                            </div>
+                        </Link>
+                    ))}
+            </div>
+        </>
     );
 }
 
