@@ -1,4 +1,6 @@
 #inventory-item-container {
+    max-height: calc(100vh - 90px - 4rem);
+    overflow: hidden;
     max-width: 1200px;
     margin: auto;
 

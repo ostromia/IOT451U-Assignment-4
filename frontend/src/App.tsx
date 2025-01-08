@@ -1,7 +1,7 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import { Layout } from "./components";
-import { Home, Inventory, InventoryItem } from './routes';
+import { Home, Inventory, InventoryItem, AddItem } from './routes';
 
 const App = () => {
     return (
@@ -11,6 +11,7 @@ const App = () => {
                     <Route index element={<Home/>}></Route>
                     <Route path="/inventory" element={<Inventory />} />
                     <Route path="/inventory/:id" element={<InventoryItem />} />
+                    <Route path="/add-item" element={<AddItem />} />
                 </Route>
             </Routes>
         </BrowserRouter>

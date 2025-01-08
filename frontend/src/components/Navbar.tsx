@@ -12,6 +12,10 @@ function Navbar() {
             <Link to="/inventory">
                 Inventory
             </Link>
+
+            <Link to="/add-item">
+                Add Item
+            </Link>
         </nav>
     );
 }
