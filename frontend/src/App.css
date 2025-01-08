@@ -2,32 +2,3 @@ body {
     margin: 0;
     font-family: sans-serif;
 }
-
-.App {
-    padding: 2rem;
-    box-sizing: border-box;
-}
-
-#inventory {
-    max-width: 1000px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-}
-
-.inventory-item {
-    background-color: lightgray;
-    display: flex;
-    border-radius: 5px;
-    overflow: hidden;
-    /* align-content: center; */
-    /* flex-direction: column; */
-    /* align-items: stretch; */
-    /* height: 100%; */
-}
-
-.inventory-item > img {
-    width: 100%;
-    /* object-fit: fill; */
-}

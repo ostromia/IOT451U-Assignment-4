@@ -1,37 +1,18 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import './App.css';
+import { Route, Routes, BrowserRouter } from "react-router-dom";
+import "./App.css";
+import { Layout } from "./components";
+import { Home, Inventory } from './routes';
 
-interface InventoryItem {
-    id: number;
-    name: string;
-    url: string;
-    image: string;
-}
-
-function App() {
-    const [inventory, setInventory] = useState<InventoryItem[]>([]);
-
-    useEffect(() => {
-        axios.get(`http://localhost:8080/inventory`)
-            .then(response => {
-                setInventory(response.data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }, []);
-
+const App = () => {
     return (
-        <div className="App">
-            <div id="inventory">
-                {inventory.map((item) => (
-                    <div className="inventory-item" key={item.id}>
-                        <img src={item.image}/>
-                    </div>
-                ))}
-            </div>
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Layout/>}>
+                    <Route index element={<Home/>}></Route>
+                    <Route path="/inventory" element={<Inventory />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
     );
 }
 

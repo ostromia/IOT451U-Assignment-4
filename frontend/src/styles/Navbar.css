@@ -1,0 +1,27 @@
+nav {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+
+    padding: 2rem;
+    box-sizing: border-box;
+   align-items: center;
+}
+
+nav > a {
+    text-decoration: none;
+}
+
+#navbar-icon {
+    width: 25px;
+    height: 25px;
+}
+
+a, a:visited, a:hover, a:active {
+    color: inherit;
+  }
+
+#navbar-icon > img {
+    height: 100%;
+    width: 100%;
+}
