@@ -8,6 +8,9 @@ interface InventoryItem {
     name: string;
     url: string;
     image: string;
+    brand: string;
+    price: number;
+    category: string
 }
 
 function ItemDetail() {
@@ -46,6 +49,10 @@ function ItemDetail() {
         <div id="inventory-item-container">
             <div id="inventory-item-text-container">
                 <h1>{item.name}</h1>
+                <p>{item.brand}</p>
+                <p>{item.category}</p>
+                <p>Price: £{item.price}</p>
+                <p><a href={item.url}>View Item</a></p>
                 <button onClick={handleDelete}>Delete Item</button>
             </div>
             <div id="inventory-item-image-container">

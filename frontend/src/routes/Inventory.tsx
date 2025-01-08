@@ -8,6 +8,9 @@ interface InventoryItem {
     name: string;
     url: string;
     image: string;
+    brand: string;
+    price: number;
+    category: string
 }
 
 function Inventory() {

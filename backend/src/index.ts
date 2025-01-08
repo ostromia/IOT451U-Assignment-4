@@ -41,28 +41,36 @@ app.get('/inventory', (request, response) => {
 });
 
 app.post('/add-item', (request, response) => {
-    const { name, url, image } = request.body;
+    const { name, url, image, price, category, brand } = request.body;
 
-    if (!name || !url || !image) {
+    if (!name || !url || !image || price == null || !category || !brand) {
         response.status(400).json({ error: "Missing required fields" });
         return;
     }
 
-    const query = 'INSERT INTO inventory (name, url, image) VALUES (?, ?, ?)';
+    const query = `
+        INSERT INTO inventory (name, url, image, price, category, brand)
+        VALUES (?, ?, ?, ?, ?, ?)
+    `;
 
-    db.run(query, [name, url, image], function (error) {
+    db.run(query, [name, url, image, price, category, brand], function (error) {
         if (error) {
             console.error(error.message);
             response.status(500).json({ error: error.message });
             return;
         }
 
-        response.status(201).json({ message: "Item added successfully" });
+        response.status(201).json({ message: "Item added successfully", id: this.lastID });
     });
 });
 
 app.post('/remove-item', (request, response) => {
     const { id } = request.body;
+
+    if (!id) {
+        response.status(400).json({ error: "ID is required" });
+        return;
+    }
 
     const query = 'DELETE FROM inventory WHERE id = ?';
 
@@ -76,7 +84,7 @@ app.post('/remove-item', (request, response) => {
             return response.status(404).json({ error: "Item not found" });
         }
 
-        response.status(201).json({ message: "Item removed successfully" });
+        response.status(200).json({ message: "Item removed successfully" });
     });
 });
 
