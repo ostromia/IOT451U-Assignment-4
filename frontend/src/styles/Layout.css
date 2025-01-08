@@ -1,0 +1,15 @@
+#layout-container {
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+#layout-navbar-container {
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+#layout-outlet-container {
+    height: calc(100vh - 90px);
+    padding: 2rem;
+    box-sizing: border-box;
+}

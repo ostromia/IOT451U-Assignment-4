@@ -1,11 +1,8 @@
 nav {
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 1rem;
-
-    padding: 2rem;
-    box-sizing: border-box;
-   align-items: center;
 }
 
 nav > a {
