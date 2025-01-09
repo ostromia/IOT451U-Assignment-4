@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-function App() {
+interface AddItemProps {
+    onClose: () => void;
+    onItemAdded: () => void;
+}
+
+function AddItem({ onClose, onItemAdded }: AddItemProps) {
     const [name, setName] = useState('');
     const [url, setUrl] = useState('');
     const [image, setImage] = useState('');
@@ -10,7 +15,7 @@ function App() {
     const [brand, setBrand] = useState('');
     const [message, setMessage] = useState('');
 
-    const handleAddItem = async (e) => {
+    const handleAddItem = async (e: React.FormEvent) => {
         e.preventDefault();
 
         try {
@@ -31,8 +36,10 @@ function App() {
                 setPrice('');
                 setCategory('');
                 setBrand('');
+                onItemAdded(); // Refresh inventory
+                onClose(); // Close modal
             }
-        } catch (error) {
+        } catch (error: any) {
             setMessage(`Error: ${error.response?.data?.error || error.message}`);
         }
     };
@@ -127,4 +134,4 @@ function App() {
     );
 }
 
-export default App;
+export default AddItem;

@@ -33,7 +33,6 @@ function ItemDetail() {
     const handleDelete = () => {
         axios.post('http://localhost:8080/remove-item', { id: Number(id) })
             .then(() => {
-                alert("Item removed successfully");
                 navigate('/inventory');
             })
             .catch(error => {
@@ -45,7 +44,6 @@ function ItemDetail() {
     const handleToggleFavourite = () => {
         axios.post('http://localhost:8080/favourite', { id: Number(id) })
             .then(() => {
-                alert(`Item ${item?.favourite ? "removed from" : "marked as"} favourites`);
                 setItem(prev => prev ? { ...prev, favourite: !prev.favourite } : null);
             })
             .catch(error => {
