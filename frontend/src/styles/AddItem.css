@@ -1,0 +1,66 @@
+#add-item-container {
+    background-color: black;
+}
+
+#add-item-container h1 {
+    font-family: "Zen Dots", sans-serif;
+    margin: 0;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+#add-item-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+#add-item-container
+
+#add-item-container h1 {
+    margin-bottom: 20px;
+}
+
+#add-item-container form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    max-width: 400px;
+    width: 100%;
+}
+
+#add-item-container form label {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    font-family: "Zen Dots", sans-serif;
+}
+
+#add-item-container form input {
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#add-item-container button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#add-item-container button:hover {
+    background-color: #45a049;
+}
+
+#add-item-container div.message {
+    margin-top: 20px;
+    color: green;
+    text-align: center;
+}

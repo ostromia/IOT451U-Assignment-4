@@ -1,14 +1,13 @@
 #layout-container {
     display: grid;
     grid-template-rows: auto 1fr;
+    gap: 1rem;
 }
 
 #layout-navbar-container {
-    padding: 2rem;
+    padding: 1rem;
     box-sizing: border-box;
 }
 
 #layout-outlet-container {
-    padding: 2rem;
-    box-sizing: border-box;
 }

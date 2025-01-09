@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import "../styles/AddItem.css";
 
 interface AddItemProps {
     onClose: () => void;
@@ -48,43 +49,40 @@ function AddItem({ onClose, onItemAdded }: AddItemProps) {
         <div id="add-item-container">
             <h1>Add Item to Inventory</h1>
             <form onSubmit={handleAddItem}>
-                <div style={{ marginBottom: '10px' }}>
+                <div>
                     <label>
                         Name:
                         <input
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            style={{ marginLeft: '10px', padding: '5px' }}
                             required
                         />
                     </label>
                 </div>
-                <div style={{ marginBottom: '10px' }}>
+                <div>
                     <label>
                         URL:
                         <input
                             type="text"
                             value={url}
                             onChange={(e) => setUrl(e.target.value)}
-                            style={{ marginLeft: '10px', padding: '5px' }}
                             required
                         />
                     </label>
                 </div>
-                <div style={{ marginBottom: '10px' }}>
+                <div>
                     <label>
                         Image:
                         <input
                             type="text"
                             value={image}
                             onChange={(e) => setImage(e.target.value)}
-                            style={{ marginLeft: '10px', padding: '5px' }}
                             required
                         />
                     </label>
                 </div>
-                <div style={{ marginBottom: '10px' }}>
+                <div>
                     <label>
                         Price:
                         <input
@@ -92,41 +90,38 @@ function AddItem({ onClose, onItemAdded }: AddItemProps) {
                             step="0.01"
                             value={price}
                             onChange={(e) => setPrice(e.target.value)}
-                            style={{ marginLeft: '10px', padding: '5px' }}
                             required
                         />
                     </label>
                 </div>
-                <div style={{ marginBottom: '10px' }}>
+                <div>
                     <label>
                         Category:
                         <input
                             type="text"
                             value={category}
                             onChange={(e) => setCategory(e.target.value)}
-                            style={{ marginLeft: '10px', padding: '5px' }}
                             required
                         />
                     </label>
                 </div>
-                <div style={{ marginBottom: '10px' }}>
+                <div>
                     <label>
                         Brand:
                         <input
                             type="text"
                             value={brand}
                             onChange={(e) => setBrand(e.target.value)}
-                            style={{ marginLeft: '10px', padding: '5px' }}
                             required
                         />
                     </label>
                 </div>
-                <button type="submit" style={{ padding: '10px 20px' }}>
+                <button type="submit">
                     Add Item
                 </button>
             </form>
             {message && (
-                <div style={{ marginTop: '20px', color: 'green' }}>
+                <div className="message">
                     {message}
                 </div>
             )}

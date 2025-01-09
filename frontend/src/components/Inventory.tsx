@@ -14,7 +14,7 @@ interface InventoryItem {
     favourite: boolean;
 }
 
-const Inventory = forwardRef((_, ref) => {
+const Inventory = forwardRef(({ onShowFavoritesChange }: { onShowFavoritesChange: (value: boolean) => void }, ref) => {
     const [inventory, setInventory] = useState<InventoryItem[]>([]);
     const [showFavorites, setShowFavorites] = useState(false);
 
@@ -32,9 +32,13 @@ const Inventory = forwardRef((_, ref) => {
         fetchInventory();
     }, []);
 
+    useEffect(() => {
+        onShowFavoritesChange(showFavorites);
+    }, [showFavorites, onShowFavoritesChange]);
+
     function handleToggleFavorites() {
         setShowFavorites((prev) => !prev);
-    };
+    }
 
     const filteredInventory = showFavorites ? inventory.filter(item => item.favourite) : inventory;
 
@@ -42,7 +46,7 @@ const Inventory = forwardRef((_, ref) => {
 
     useImperativeHandle(ref, () => ({
         handleToggleFavorites,
-        fetchInventory
+        fetchInventory,
     }));
 
     return (
@@ -58,5 +62,6 @@ const Inventory = forwardRef((_, ref) => {
         </div>
     );
 });
+
 
 export default Inventory;

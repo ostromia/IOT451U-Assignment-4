@@ -2,6 +2,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import "../styles/InventoryItem.css";
+import heart_hollow from "../assets/heart-hollow.svg";
+import heart_filled from "../assets/heart-filled.svg";
+import delete_button_svgrepo_com from "../assets/delete-button-svgrepo-com.svg";
 
 interface InventoryItem {
     id: number;
@@ -60,15 +63,25 @@ function ItemDetail() {
         <div id="inventory-item-container">
             <div id="inventory-item-text-container">
                 <h1>{item.name}</h1>
+
                 <p>{item.brand}</p>
                 <p>{item.category}</p>
-                <p>Price: £{item.price}</p>
-                <p><a href={item.url}>View Item</a></p>
-                <p>{item.favourite ? "Marked as Favourite" : "Not a Favourite"}</p>
-                <button onClick={handleDelete}>Delete Item</button>
-                <button onClick={handleToggleFavourite}>
-                    {item.favourite ? "Remove from Favourites" : "Add to Favourites"}
-                </button>
+                <p>£{item.price}</p>
+                <p><a href={item.url} target="_blank">View Item</a></p>
+
+                <div id="filters-container">
+                    <button id="toggle-favorites-button" onClick={handleToggleFavourite}>
+                        {item.favourite ? (
+                            <img src={heart_filled} />
+                        ) : (
+                            <img src={heart_hollow} />
+                        )}
+                    </button>
+
+                    <button onClick={handleDelete}>
+                        <img src={delete_button_svgrepo_com} />
+                    </button>
+                </div>
             </div>
             <div id="inventory-item-image-container">
                 <img src={item.image} alt={item.name} />
