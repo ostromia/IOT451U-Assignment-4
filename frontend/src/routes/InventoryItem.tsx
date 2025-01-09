@@ -33,7 +33,7 @@ function ItemDetail() {
     const handleDelete = () => {
         axios.post('http://localhost:8080/remove-item', { id: Number(id) })
             .then(() => {
-                navigate('/inventory');
+                navigate('/');
             })
             .catch(error => {
                 console.error("Error removing item:", error);

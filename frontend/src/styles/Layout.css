@@ -9,7 +9,6 @@
 }
 
 #layout-outlet-container {
-    /* min-height: calc(100vh - 90px); */
     padding: 2rem;
     box-sizing: border-box;
 }

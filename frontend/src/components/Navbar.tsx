@@ -8,14 +8,6 @@ function Navbar() {
             <Link id="navbar-icon" to="/">
                 <img src={wardrobe_svgrepo_com} />
             </Link>
-
-            <Link to="/inventory">
-                Inventory
-            </Link>
-
-            <Link to="/add-item">
-                Add Item
-            </Link>
         </nav>
     );
 }

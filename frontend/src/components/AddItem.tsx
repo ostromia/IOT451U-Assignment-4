@@ -23,7 +23,7 @@ function AddItem({ onClose, onItemAdded }: AddItemProps) {
                 name,
                 url,
                 image,
-                price: parseFloat(price), // Ensure price is a number
+                price: parseFloat(price),
                 category,
                 brand,
             });
@@ -36,8 +36,8 @@ function AddItem({ onClose, onItemAdded }: AddItemProps) {
                 setPrice('');
                 setCategory('');
                 setBrand('');
-                onItemAdded(); // Refresh inventory
-                onClose(); // Close modal
+                onItemAdded();
+                onClose();
             }
         } catch (error: any) {
             setMessage(`Error: ${error.response?.data?.error || error.message}`);
