@@ -1,9 +1,7 @@
 import { Link } from 'react-router-dom';
-import wardrobe_svgrepo_com from "../assets/wardrobe-svgrepo-com.svg";
-import logo from "../assets/logo.jpeg";
-import "../styles/Navbar.css";
+import "@styles/Navbar.css";
 
-function Navbar() {
+export default function Navbar() {
     return (
         <nav>
             <Link to="/">
@@ -12,5 +10,3 @@ function Navbar() {
         </nav>
     );
 }
-
-export default Navbar;

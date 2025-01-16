@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import axios from 'axios';
-import "../styles/AddItem.css";
+import "@styles/AddItem.css";
 
 interface AddItemProps {
     onClose: () => void;
     onItemAdded: () => void;
 }
 
-function AddItem({ onClose, onItemAdded }: AddItemProps) {
+export default function AddItem({ onClose, onItemAdded }: AddItemProps) {
     const [name, setName] = useState('');
     const [url, setUrl] = useState('');
     const [image, setImage] = useState('');
@@ -128,5 +128,3 @@ function AddItem({ onClose, onItemAdded }: AddItemProps) {
         </div>
     );
 }
-
-export default AddItem;

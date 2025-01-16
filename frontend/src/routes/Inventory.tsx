@@ -1,39 +1,21 @@
 import { useState, useEffect } from 'react';
 import Modal from 'react-modal';
-import { AddItem } from '../components';
 import { Link } from 'react-router-dom';
-import "../styles/Home.css";
-import "../styles/inventory.css";
-
 import axios from 'axios';
-
-import heart_hollow from "../assets/heart-hollow.svg";
-import heart_filled from "../assets/heart-filled.svg";
-import plus from "../assets/plus.svg";
+import AddItem from '@components/AddItem';
+import heart_hollow from "@assets/heart-hollow.svg";
+import heart_filled from "@assets/heart-filled.svg";
+import plus from "@assets/plus.svg";
+import "@styles/Home.css";
+import "@styles/inventory.css";
+import { InventoryItem } from '@src/types/inventory';
 
 Modal.setAppElement('#root');
-
-interface InventoryItem {
-    id: number;
-    name: string;
-    url: string;
-    image: string;
-    brand: string;
-    price: number;
-    category: string;
-    favourite: boolean;
-}
 
 export default function Inventory() {
     const [inventory, setInventory] = useState<InventoryItem[]>([]);
     const [showFavorites, setShowFavorites] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-    // const inventoryRef = useRef<any>(null);
-    // const [showFavorites, setShowFavorites] = useState(false);
-
-    const handleOpenModal = () => setIsModalOpen(true);
-    const handleCloseModal = () => setIsModalOpen(false);
 
     function fetchInventory() {
         axios.get(`http://localhost:8080/inventory`)
@@ -49,13 +31,19 @@ export default function Inventory() {
         fetchInventory();
     }, []);
 
+    const filteredInventory = showFavorites ? inventory.filter(item => item.favourite) : inventory;
+
+    function handleOpenModal() {
+        setIsModalOpen(true);
+    }
+
+    function handleCloseModal() {
+        setIsModalOpen(false);
+    }
 
     function toggleShowFavorites() {
         setShowFavorites((prev) => !prev);
     }
-
-
-    const filteredInventory = showFavorites ? inventory.filter(item => item.favourite) : inventory;
 
     return (
         <>

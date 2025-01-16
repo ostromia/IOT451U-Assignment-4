@@ -1,8 +1,10 @@
 import { Outlet } from 'react-router-dom';
-import Navbar from '../components/Navbar';
-import "../styles/Layout.css";
+import '@fontsource/zen-dots';
+import '@fontsource/bokor';
+import Navbar from '@components/Navbar';
+import "@styles/Layout.css";
 
-function Layout() {
+export default function Layout() {
     return (
         <div id="layout-container">
             <div id="layout-navbar-container">
@@ -14,5 +16,3 @@ function Layout() {
         </div>
     );
 }
-
-export default Layout;

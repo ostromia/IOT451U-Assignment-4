@@ -1,23 +1,13 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import "../styles/InventoryItem.css";
-import heart_hollow from "../assets/heart-hollow.svg";
-import heart_filled from "../assets/heart-filled.svg";
-import delete_button_svgrepo_com from "../assets/delete-button-svgrepo-com.svg";
+import "@styles/InventoryItem.css";
+import heart_hollow from "@assets/heart-hollow.svg";
+import heart_filled from "@assets/heart-filled.svg";
+import delete_button_svgrepo_com from "@assets/delete-button-svgrepo-com.svg";
+import { InventoryItem } from '@src/types/inventory';
 
-interface InventoryItem {
-    id: number;
-    name: string;
-    url: string;
-    image: string;
-    brand: string;
-    price: number;
-    category: string;
-    favourite: boolean;
-}
-
-function ItemDetail() {
+export default function ItemInventory() {
     const { id } = useParams<{ id: string }>();
     const [item, setItem] = useState<InventoryItem | null>(null);
     const navigate = useNavigate();
@@ -33,7 +23,7 @@ function ItemDetail() {
             });
     }, [id]);
 
-    const handleDelete = () => {
+    function handleDelete() {
         axios.post('http://localhost:8080/remove-item', { id: Number(id) })
             .then(() => {
                 navigate('/');
@@ -44,7 +34,7 @@ function ItemDetail() {
             });
     };
 
-    const handleToggleFavourite = () => {
+    function handleToggleFavourite() {
         axios.post('http://localhost:8080/favourite', { id: Number(id) })
             .then(() => {
                 setItem(prev => prev ? { ...prev, favourite: !prev.favourite } : null);
@@ -89,5 +79,3 @@ function ItemDetail() {
         </div>
     );
 }
-
-export default ItemDetail;
