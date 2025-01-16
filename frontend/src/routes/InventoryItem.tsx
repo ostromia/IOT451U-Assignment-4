@@ -50,7 +50,7 @@ export default function ItemInventory() {
     }
 
     return (
-        <div id="inventory-item-container">
+        <main id="inventory-item-container">
             <div id="inventory-item-text-container">
                 <h1>{item.name}</h1>
 
@@ -59,8 +59,8 @@ export default function ItemInventory() {
                 <p>£{item.price}</p>
                 <p><a href={item.url} target="_blank">View Item</a></p>
 
-                <div id="filters-container">
-                    <button id="toggle-favorites-button" onClick={handleToggleFavourite}>
+                <div id="inventory-item-filters-container">
+                    <button onClick={handleToggleFavourite}>
                         {item.favourite ? (
                             <img src={heart_filled} />
                         ) : (
@@ -76,6 +76,6 @@ export default function ItemInventory() {
             <div id="inventory-item-image-container">
                 <img src={item.image} alt={item.name} />
             </div>
-        </div>
+        </main>
     );
 }

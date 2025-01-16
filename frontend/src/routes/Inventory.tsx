@@ -6,8 +6,7 @@ import AddItem from '@components/AddItem';
 import heart_hollow from "@assets/heart-hollow.svg";
 import heart_filled from "@assets/heart-filled.svg";
 import plus from "@assets/plus.svg";
-import "@styles/Home.css";
-import "@styles/inventory.css";
+import "@styles/Inventory.css";
 import { InventoryItem } from '@src/types/inventory';
 
 Modal.setAppElement('#root');
@@ -46,13 +45,13 @@ export default function Inventory() {
     }
 
     return (
-        <>
-            <div id="filters-container">
+        <main id="inventory-container">
+            <div id="inventory-filters-container">
                 <button onClick={handleOpenModal}>
                     <img src={plus} />
                 </button>
 
-                <button id="toggle-favorites-button" onClick={toggleShowFavorites}>
+                <button onClick={toggleShowFavorites}>
                     {showFavorites ? (
                         <img src={heart_filled} />
                     ) : (
@@ -66,7 +65,6 @@ export default function Inventory() {
                     <Link to={`/inventory/${item.id}`} key={item.id}>
                         <div className="inventory-item">
                             <img src={item.image} alt={item.name} />
-                            <p>{item.name}</p>
                         </div>
                     </Link>
                 ))}
@@ -85,8 +83,8 @@ export default function Inventory() {
                     },
                 }}
             >
-                <AddItem onClose={handleCloseModal} onItemAdded={() => fetchInventory()} />
+                <AddItem onClose={handleCloseModal} onItemAdded={fetchInventory} />
             </Modal>
-        </>
+        </main>
     );
 }

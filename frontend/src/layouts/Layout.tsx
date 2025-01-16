@@ -6,13 +6,9 @@ import "@styles/Layout.css";
 
 export default function Layout() {
     return (
-        <div id="layout-container">
-            <div id="layout-navbar-container">
-                <Navbar />
-            </div>
-            <div id="layout-outlet-container">
-                <Outlet />
-            </div>
-        </div>
+        <>
+            <Navbar />
+            <Outlet />
+        </>
     );
 }

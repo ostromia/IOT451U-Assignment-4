@@ -1,20 +1,17 @@
 body {
     margin: 0;
-    font-family: sans-serif;
+    font-family: "Zen Dots", sans-serif;
     background-color: black;
     color: white;
 }
 
-#layout-container {
-    display: grid;
-    grid-template-rows: auto 1fr;
-    gap: 1rem;
-}
-
-#layout-navbar-container {
-    padding: 1rem;
+main {
+    max-width: 1000px;
+    margin: auto;
+    padding: 1rem 2rem;
     box-sizing: border-box;
 }
 
-#layout-outlet-container {
+h1, p {
+    margin: 0;
 }
