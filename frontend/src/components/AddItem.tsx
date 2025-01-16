@@ -8,35 +8,44 @@ interface AddItemProps {
 }
 
 export default function AddItem({ onClose, onItemAdded }: AddItemProps) {
-    const [name, setName] = useState('');
-    const [url, setUrl] = useState('');
-    const [image, setImage] = useState('');
-    const [price, setPrice] = useState('');
-    const [category, setCategory] = useState('');
-    const [brand, setBrand] = useState('');
+    const [formData, setFormData] = useState({
+        name: '',
+        url: '',
+        image: '',
+        price: '',
+        category: '',
+        brand: '',
+    });
     const [message, setMessage] = useState('');
 
-    const handleAddItem = async (e: React.FormEvent) => {
+    function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+    };
+
+    async function handleAddItem(e: React.FormEvent) {
         e.preventDefault();
 
         try {
             const response = await axios.post('http://localhost:8080/add-item', {
-                name,
-                url,
-                image,
-                price: parseFloat(price),
-                category,
-                brand,
+                name: formData.name,
+                url: formData.url,
+                image: formData.image,
+                price: parseFloat(formData.price),
+                category: formData.category,
+                brand: formData.brand
             });
 
             if (response.status === 201) {
                 setMessage('Item added successfully!');
-                setName('');
-                setUrl('');
-                setImage('');
-                setPrice('');
-                setCategory('');
-                setBrand('');
+                setFormData({
+                    name: '',
+                    url: '',
+                    image: '',
+                    price: '',
+                    category: '',
+                    brand: '',
+                });
                 onItemAdded();
                 onClose();
             }
@@ -52,79 +61,42 @@ export default function AddItem({ onClose, onItemAdded }: AddItemProps) {
                 <div>
                     <label>
                         Name:
-                        <input
-                            type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            required
-                        />
+                        <input type="text" name="name" value={formData.name} onChange={handleInputChange} required />
                     </label>
                 </div>
                 <div>
                     <label>
                         URL:
-                        <input
-                            type="text"
-                            value={url}
-                            onChange={(e) => setUrl(e.target.value)}
-                            required
-                        />
+                        <input type="text" name="url" value={formData.url} onChange={handleInputChange} required />
                     </label>
                 </div>
                 <div>
                     <label>
                         Image:
-                        <input
-                            type="text"
-                            value={image}
-                            onChange={(e) => setImage(e.target.value)}
-                            required
-                        />
+                        <input type="text" name="image" value={formData.image} onChange={handleInputChange} required />
                     </label>
                 </div>
                 <div>
                     <label>
                         Price:
-                        <input
-                            type="number"
-                            step="0.01"
-                            value={price}
-                            onChange={(e) => setPrice(e.target.value)}
-                            required
-                        />
+                        <input type="number" step="0.01" name="price" value={formData.price} onChange={handleInputChange} required />
                     </label>
                 </div>
                 <div>
                     <label>
                         Category:
-                        <input
-                            type="text"
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}
-                            required
-                        />
+                        <input type="text" name="category" value={formData.category} onChange={handleInputChange} required />
                     </label>
                 </div>
                 <div>
                     <label>
                         Brand:
-                        <input
-                            type="text"
-                            value={brand}
-                            onChange={(e) => setBrand(e.target.value)}
-                            required
-                        />
+                        <input type="text" name="brand" value={formData.brand} onChange={handleInputChange} required />
                     </label>
                 </div>
-                <button type="submit">
-                    Add Item
-                </button>
+                <button type="submit">Add Item</button>
             </form>
-            {message && (
-                <div className="message">
-                    {message}
-                </div>
-            )}
+            {message && <div className="message">{message}</div>}
         </div>
     );
 }

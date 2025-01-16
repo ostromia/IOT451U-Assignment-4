@@ -73,18 +73,26 @@ export default function Inventory() {
             <Modal
                 isOpen={isModalOpen}
                 onRequestClose={handleCloseModal}
-                contentLabel="Add Item Modal"
                 style={{
+                    overlay: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    },
                     content: {
+                        position: 'relative',
+                        inset: 'auto',
                         backgroundColor: 'black',
+                        border: '1px solid grey',
                         borderRadius: '10px',
-                        width: '50%',
-                        margin: 'auto',
+                        margin: 'auto'
                     },
                 }}
             >
                 <AddItem onClose={handleCloseModal} onItemAdded={fetchInventory} />
             </Modal>
+
         </main>
     );
 }

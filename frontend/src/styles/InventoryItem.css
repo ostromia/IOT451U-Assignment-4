@@ -17,6 +17,10 @@
     gap: 1.5rem;
 }
 
+#inventory-item-text-container a {
+    color: rgb(88, 166, 255);
+}
+
 #inventory-item-image-container {
     width: 100%;
     height: 100%;
